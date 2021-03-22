@@ -1,39 +1,3 @@
-%   
-%   THESIS:     CORONARY ARTERY DISEASE DIAGNOSIS BASED ON AN ANALYZING WAVEFORM
-%               MORPHOLOGY OF THE ELECTROCARDIOGRAM SIGNAL
-%
-%   Student:    Nguyen Xuan Duong
-%               nguyenxuanduong0701@gmail.com
-%               K58DA (2013-2017)
-%               University of Engineering and Technology - VNU, Hanoi
-%               Faculty of Electronics and Telecommunications
-%
-%              This file is a part of a package that contains a lot of files:
-%
-%                     1. TESTINGBenhDongMachVanh.m - main script file;
-%                     2. ecgdemowinmax.m - window filter script file;
-%                     3. dectecPwave.m - sub function script file;
-%                     4. dectecQwave.m - sub function script file;
-%                     5. dectecSwave.m - (THIS FILE) sub function script file;
-%                     6. dectecTwave.m - sub function script file;
-%                     7. dataECG - folder contains all ecg data sample;
-%                     8. ......
-
-%              To get the package, contact me via email:
-%                     nguyenxuanduong0701@gmail.com
-%
-%              To run this project put all files in the package in Matlab's
-%              work directory, click Run in Matlab toolbars or type in
-%              Command Window "TESTINGBenhDongMachVanh" then press Enter.
-%
-%                     >> TESTINGBenhDongMachVanh
-%
-%              To test this function, load any ecg data file in dataECG
-%              folder then type in Command Window:
-
-%                     >> detectSwave(ecg, ECGinTimeDomain, length(Rpeaks)-1, Rpeaks, RSdistance);
-%
-
 function [Swave, Jpoint] = detectSwave(data, data_filtered, number_of_peaks, Rpeaks, halfRR)
     findpeaksAfterR = ecgdemowinmax(data_filtered, 101);   %   Draw all peaks after R
     peaksafterR = find(findpeaksAfterR);
@@ -91,12 +55,3 @@ function [Swave, Jpoint] = detectSwave(data, data_filtered, number_of_peaks, Rpe
         Swave(number_of_peaks) = Rpeaks(number_of_peaks);    %   Them de ve
     end
 end
-
-%   RSdistance is the interval in that we determine minimum value => Swave
-
-% %% DETECT S WAVE
-%     % song S la song sau nhat cua phuc bo QRS, thoi gian QRS < 0.1s
-%     % Doan QR tam 0.04s do do chon 1 cua so khoang rong 0.06 tinh tu song R
-%     % sau do tim min cua cua so do, ket qua thu dc chinh la song S.
-%     % Song S la song am, dung sau song R
-% % Detect S wave ends here

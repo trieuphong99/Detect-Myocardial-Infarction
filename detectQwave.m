@@ -1,5 +1,3 @@
-%%@EXAMPLE Qwave = detectQwave(ecg, length(positions2)-1, positions2, QRdistance);
-    %   [Qwave, QLLeg, QRLeg, Q_amplitude] = detectQwave(data, data_filter, number_of_peaks, Rpeaks, Swave, QRdistance)
 function [Qwave, QLLeg, QRLeg] = detectQwave(data, data_filter, number_of_peaks, Rpeaks, Swave, QRdistance)
     for i=2:1:number_of_peaks
         [USELESS, Qwave(i)] = min(data([(Rpeaks(i)-QRdistance)+1:1:Rpeaks(i)]));

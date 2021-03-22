@@ -1,5 +1,3 @@
-%%@EXAMPLE: [Pwave, flag] = detectPwave(ecg, corrected, length(positions2)-1, nuakhoangRR, Qwave, background_line);
-
 function [Pwave, PLLeg, PRLeg] = detectPwave(data, number_of_peaks, halfRR, Qwave)
 
     samplingrate = 1000;
@@ -65,80 +63,6 @@ function [Pwave, PLLeg, PRLeg] = detectPwave(data, number_of_peaks, halfRR, Qwav
     Pwave(number_of_peaks) = Qwave(number_of_peaks)-100; %   Cho them de ve
 end
 
-
-
-% function Pwave = detectPwave(data, Qwave, nuakhoangRR)
-%     WinSize = 251;
-%     maxfilter = maxwindowfilter(data, WinSize);
-%     minfilter = minwindowfilter(data, WinSize);
-%     iter = 0;
-%     for i = 2:1:length(Qwave)
-%         countmax = 0;
-%         countmin = 0;
-%         for j = 1:1:length(maxfilter)
-%             if maxfilter(j) > nuakhoangRR(i)+50 & maxfilter(j) < Qwave(i)
-%                 countmax = countmax + 1;
-%             end
-%             if maxfilter(j) > Qwave(i)
-%                 j = j - 1;
-%                 break;
-%             end
-%         end
-%         
-%         for k = 1:1:length(minfilter)
-%             if minfilter(k) > nuakhoangRR(i)+50 & minfilter(k) < Qwave(i)
-%                 countmin = countmin + 1;
-%             end
-%             if minfilter(k) > Qwave(i)-25
-%                 k = k - 1;
-%                 break;
-%             end
-%         end
-%         
-% %         disp(strcat(num2str(i), '. Countmin = ',num2str(countmin)));
-% %         disp(strcat(num2str(i), '. CountmAX = ',num2str(countmax)));
-%         
-%         %   If it has no max and min
-%         if countmax == 0 & countmin == 0
-%             Pwave(i) = 0;
-%         %   If it has only 1 max
-%         elseif countmax == 1 & countmin == 0
-%             Pwave(i) = maxfilter(j);
-%         %   If it has only 1 min
-%         elseif countmax == 0 & countmin == 1
-%             Pwave(i) = minfilter(k);
-%         %   If it has 1 max and 1 min => peek which closer to Qwave
-%         elseif countmax == 1 & countmin == 1
-%             if maxfilter(j) > minfilter(k)
-%                 Pwave(i) = maxfilter(j);
-%             else 
-%                 Pwave(i) = minfilter(k);
-%             end
-%         %   If it a type kind of (min)->max->min->(min(Qwave))
-%         elseif minfilter(k-1) > nuakhoangRR(i) & minfilter(k) > maxfilter(j) & maxfilter(j) > minfilter(k-1)
-%             Pwave(i) = maxfilter(j);
-%         %   Chua nghi ra truong hop
-%         else
-%             %   If anyone before and closest to Qwave => choose that one
-%             if maxfilter(j) > minfilter(k)
-%                 Pwave(i) = maxfilter(j);
-%             else
-%                 Pwave(i) = minfilter(k);
-%             end
-%         end
-%         
-%         if i == 2 | i == 3 | i == 4
-%             
-%         end
-%         
-%     end
-%     
-%     %   Check P(2), P(3) and P(4) to synchronous P max or min
-% end
-
-
-    
-    
     
     
     
